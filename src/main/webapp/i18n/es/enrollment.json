@@ -1,0 +1,27 @@
+{
+  "enrollmentApp": {
+    "enrollment": {
+      "home": {
+        "title": "Enrollments",
+        "createLabel": "Crear nuevo Enrollment",
+        "createOrEditLabel": "Crear o editar Enrollment",
+        "notFound": "No Enrollment found"
+      },
+      "created": "Un nuevo Enrollment ha sido creado con el identificador {{ param }}",
+      "updated": "Un Enrollment ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Enrollment ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Enrollment {{ id }}?"
+      },
+      "detail": {
+        "title": "Enrollment"
+      },
+      "year": "Year",
+      "period": "Period",
+      "level": "Level",
+      "dateEnrollment": "Date Enrollment",
+      "student": "Student",
+      "program": "Program"
+    }
+  }
+}

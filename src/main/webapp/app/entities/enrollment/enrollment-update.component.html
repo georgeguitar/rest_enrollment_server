@@ -1,0 +1,122 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-enrollment-heading" jhiTranslate="enrollmentApp.enrollment.home.createOrEditLabel">Create or edit a Enrollment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.enrollment.year" for="field_year">Year</label>
+                    <input type="text" class="form-control" name="year" id="field_year"
+                           formControlName="year"/>
+                    <div *ngIf="editForm.get('year').invalid && (editForm.get('year').dirty || editForm.get('year').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('year').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('year').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('year').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 60 }">
+                        This field cannot be longer than 60 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.enrollment.period" for="field_period">Period</label>
+                    <input type="text" class="form-control" name="period" id="field_period"
+                           formControlName="period"/>
+                    <div *ngIf="editForm.get('period').invalid && (editForm.get('period').dirty || editForm.get('period').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('period').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('period').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('period').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 60 }">
+                        This field cannot be longer than 60 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.enrollment.level" for="field_level">Level</label>
+                    <input type="text" class="form-control" name="level" id="field_level"
+                           formControlName="level"/>
+                    <div *ngIf="editForm.get('level').invalid && (editForm.get('level').dirty || editForm.get('level').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('level').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('level').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('level').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 60 }">
+                        This field cannot be longer than 60 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.enrollment.dateEnrollment" for="field_dateEnrollment">Date Enrollment</label>
+                    <div class="input-group">
+                        <input id="field_dateEnrollment" type="text" class="form-control" name="dateEnrollment" ngbDatepicker  #dateEnrollmentDp="ngbDatepicker" formControlName="dateEnrollment"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateEnrollmentDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('dateEnrollment').invalid && (editForm.get('dateEnrollment').dirty || editForm.get('dateEnrollment').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateEnrollment').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.enrollment.student" for="field_student">Student</label>
+                    <select class="form-control" id="field_student" name="student" formControlName="student">
+                        <option *ngIf="!editForm.get('student').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="studentOption.id === editForm.get('student').value?.id ? editForm.get('student').value : studentOption" *ngFor="let studentOption of students; trackBy: trackStudentById">{{studentOption.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('student').invalid && (editForm.get('student').dirty || editForm.get('student').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('student').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.enrollment.program" for="field_program">Program</label>
+                    <select class="form-control" id="field_program" name="program" formControlName="program">
+                        <option *ngIf="!editForm.get('program').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="programOption.id === editForm.get('program').value?.id ? editForm.get('program').value : programOption" *ngFor="let programOption of programs; trackBy: trackProgramById">{{programOption.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('program').invalid && (editForm.get('program').dirty || editForm.get('program').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('program').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

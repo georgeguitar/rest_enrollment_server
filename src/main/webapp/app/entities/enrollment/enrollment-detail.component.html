@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="enrollment">
+            <h2><span jhiTranslate="enrollmentApp.enrollment.detail.title">Enrollment</span> {{enrollment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="enrollmentApp.enrollment.year">Year</span></dt>
+                <dd>
+                    <span>{{enrollment.year}}</span>
+                </dd>
+                <dt><span jhiTranslate="enrollmentApp.enrollment.period">Period</span></dt>
+                <dd>
+                    <span>{{enrollment.period}}</span>
+                </dd>
+                <dt><span jhiTranslate="enrollmentApp.enrollment.level">Level</span></dt>
+                <dd>
+                    <span>{{enrollment.level}}</span>
+                </dd>
+                <dt><span jhiTranslate="enrollmentApp.enrollment.dateEnrollment">Date Enrollment</span></dt>
+                <dd>
+                    <span>{{enrollment.dateEnrollment}}</span>
+                </dd>
+                <dt><span jhiTranslate="enrollmentApp.enrollment.student">Student</span></dt>
+                <dd>
+                    <div *ngIf="enrollment.student">
+                        <a [routerLink]="['/student', enrollment.student?.id, 'view']">{{enrollment.student?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="enrollmentApp.enrollment.program">Program</span></dt>
+                <dd>
+                    <div *ngIf="enrollment.program">
+                        <a [routerLink]="['/program', enrollment.program?.id, 'view']">{{enrollment.program?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/enrollment', enrollment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

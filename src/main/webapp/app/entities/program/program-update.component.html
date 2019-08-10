@@ -1,0 +1,98 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-program-heading" jhiTranslate="enrollmentApp.program.home.createOrEditLabel">Create or edit a Program</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.program.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name').invalid && (editForm.get('name').dirty || editForm.get('name').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 60 }">
+                        This field cannot be longer than 60 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.program.semesters" for="field_semesters">Semesters</label>
+                    <select class="form-control" name="semesters" formControlName="semesters" id="field_semesters">
+                        <option value="FIRST">{{'enrollmentApp.Semesters.FIRST' | translate}}</option>
+                        <option value="SECOND">{{'enrollmentApp.Semesters.SECOND' | translate}}</option>
+                        <option value="THIRD">{{'enrollmentApp.Semesters.THIRD' | translate}}</option>
+                        <option value="FOURTH">{{'enrollmentApp.Semesters.FOURTH' | translate}}</option>
+                        <option value="FIFTH">{{'enrollmentApp.Semesters.FIFTH' | translate}}</option>
+                        <option value="SIXTH">{{'enrollmentApp.Semesters.SIXTH' | translate}}</option>
+                        <option value="SEVENTH">{{'enrollmentApp.Semesters.SEVENTH' | translate}}</option>
+                        <option value="EIGHTH">{{'enrollmentApp.Semesters.EIGHTH' | translate}}</option>
+                        <option value="NINTH">{{'enrollmentApp.Semesters.NINTH' | translate}}</option>
+                        <option value="TENTH">{{'enrollmentApp.Semesters.TENTH' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('semesters').invalid && (editForm.get('semesters').dirty || editForm.get('semesters').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('semesters').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.program.title" for="field_title">Title</label>
+                    <input type="text" class="form-control" name="title" id="field_title"
+                           formControlName="title"/>
+                    <div *ngIf="editForm.get('title').invalid && (editForm.get('title').dirty || editForm.get('title').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('title').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('title').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('title').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 60 }">
+                        This field cannot be longer than 60 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="enrollmentApp.program.credits" for="field_credits">Credits</label>
+                    <input type="number" class="form-control" name="credits" id="field_credits"
+                           formControlName="credits"/>
+                    <div *ngIf="editForm.get('credits').invalid && (editForm.get('credits').dirty || editForm.get('credits').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('credits').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('credits')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

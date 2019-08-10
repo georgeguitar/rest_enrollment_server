@@ -1,0 +1,63 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="enrollmentApp.program.home.title">Programs</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-program" [routerLink]="['/program/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="enrollmentApp.program.home.createLabel">
+            Create new Program
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="programs?.length === 0">
+        <span jhiTranslate="enrollmentApp.program.home.notFound">No programs found</span>
+    </div>
+    <div class="table-responsive" *ngIf="programs?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="enrollmentApp.program.name">Name</span></th>
+            <th><span jhiTranslate="enrollmentApp.program.semesters">Semesters</span></th>
+            <th><span jhiTranslate="enrollmentApp.program.title">Title</span></th>
+            <th><span jhiTranslate="enrollmentApp.program.credits">Credits</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let program of programs ;trackBy: trackId">
+                <td><a [routerLink]="['/program', program.id, 'view' ]">{{program.id}}</a></td>
+                <td>{{program.name}}</td>
+                <td jhiTranslate="{{'enrollmentApp.Semesters.' + program.semesters}}">{{program.semesters}}</td>
+                <td>{{program.title}}</td>
+                <td>{{program.credits}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/program', program.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/program', program.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'program', { outlets: { popup: program.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

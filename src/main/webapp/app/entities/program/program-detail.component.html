@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="program">
+            <h2><span jhiTranslate="enrollmentApp.program.detail.title">Program</span> {{program.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="enrollmentApp.program.name">Name</span></dt>
+                <dd>
+                    <span>{{program.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="enrollmentApp.program.semesters">Semesters</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'enrollmentApp.Semesters.' + program.semesters}}">{{program.semesters}}</span>
+                </dd>
+                <dt><span jhiTranslate="enrollmentApp.program.title">Title</span></dt>
+                <dd>
+                    <span>{{program.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="enrollmentApp.program.credits">Credits</span></dt>
+                <dd>
+                    <span>{{program.credits}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/program', program.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

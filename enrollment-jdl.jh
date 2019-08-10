@@ -1,0 +1,45 @@
+// Author: Juan Dirceu Navarro Arias
+// Email: jdna0615@gmail.com
+
+DEFAULT_MIN_LENGTH = 1
+DEFAULT_MAX_LENGTH = 60
+
+enum Semesters {
+    FIRST, SECOND, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH, EIGHTH, NINTH, TENTH
+}
+
+entity Student {
+	name String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+	surname String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+	address String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+	telephone String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+}
+
+entity Enrollment {
+	year String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+	period String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+    level  String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+    dateEnrollment LocalDate required
+}
+
+entity Program {
+	name String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+    semesters Semesters required
+    title String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH) required
+    credits  Integer required
+}
+
+// Relations
+
+relationship OneToMany {
+	Student{enrollment} to Enrollment{student(name) required}
+	Program{enrollment} to Enrollment{program(name) required}
+}
+
+
+
+// Set pagination options
+paginate Enrollment with pagination
+
+// Set service options to all except few
+service all with serviceImpl

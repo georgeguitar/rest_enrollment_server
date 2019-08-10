@@ -1,0 +1,26 @@
+{
+  "enrollmentApp": {
+    "program": {
+      "home": {
+        "title": "Programs",
+        "createLabel": "Crear nuevo Program",
+        "createOrEditLabel": "Crear o editar Program",
+        "notFound": "No Program found"
+      },
+      "created": "Un nuevo Program ha sido creado con el identificador {{ param }}",
+      "updated": "Un Program ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Program ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Program {{ id }}?"
+      },
+      "detail": {
+        "title": "Program"
+      },
+      "name": "Name",
+      "semesters": "Semesters",
+      "title": "Title",
+      "credits": "Credits",
+      "enrollment": "Enrollment"
+    }
+  }
+}

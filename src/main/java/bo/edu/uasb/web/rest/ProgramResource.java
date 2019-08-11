@@ -67,7 +67,7 @@ public class ProgramResource {
     }
 
     /**
-     * {@code PUT  /programs} : Updates an existing program.
+     * {@code PUT  /programs/:id} : Updates an existing program.
      *
      * @param program the program to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated program,
@@ -90,7 +90,7 @@ public class ProgramResource {
 
     
     /**
-     * {@code Patch  /programs} : Updates an existing program.
+     * {@code Patch  /programs/:id} : Updates an existing program.
      *
      * @param program the program to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated program,

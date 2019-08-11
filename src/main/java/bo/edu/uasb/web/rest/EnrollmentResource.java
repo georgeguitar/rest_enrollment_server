@@ -68,7 +68,7 @@ public class EnrollmentResource {
     }
 
     /**
-     * {@code PUT  /enrollments} : Updates an existing enrollment.
+     * {@code PUT  /enrollments/:id} : Updates an existing enrollment.
      *
      * @param enrollment the enrollment to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated enrollment,
@@ -91,7 +91,7 @@ public class EnrollmentResource {
     
     
     /**
-     * {@code PACH  /enrollments} : Updates an existing enrollment.
+     * {@code PACH  /enrollments/:id} : Updates an existing enrollment.
      *
      * @param enrollment the enrollment to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated enrollment,

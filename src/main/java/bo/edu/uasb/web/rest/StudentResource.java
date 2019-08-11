@@ -59,7 +59,7 @@ public class StudentResource {
     }
 
     /**
-     * {@code PUT  /students} : Updates an existing student.
+     * {@code PUT  /students/:id} : Updates an existing student.
      *
      * @param student the student to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated student,
@@ -81,7 +81,7 @@ public class StudentResource {
     }
 
     /**
-     * {@code Patch  /students} : Updates an existing student.
+     * {@code Patch  /students/:id} : Updates an existing student.
      *
      * @param student the student to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated student,

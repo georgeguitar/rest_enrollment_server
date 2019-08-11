@@ -42,13 +42,13 @@ URL de acceso al proyecto: [http://uasb-api.rootcode.com.bo:8078](http://uasb-ap
 
 ## Comandos de maven.
 
-### Para ejecutar el proyecto.
+### Para ejecutar el proyecto en desarrollo.
 
-\$ ./mvnw
+./mvnw
 
-### Para crear el war del proyecto para producción.
+### Para ejecutar el proyecto desde el servidor.
 
-\$ ./mvnw -Pprod package
+./enrollment-0.0.1-SNAPSHOT.jar
 
 ## Fuentes.
 

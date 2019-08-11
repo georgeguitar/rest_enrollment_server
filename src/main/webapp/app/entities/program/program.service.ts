@@ -19,8 +19,8 @@ export class ProgramService {
     return this.http.post<IProgram>(this.resourceUrl, program, { observe: 'response' });
   }
 
-  update(program: IProgram): Observable<EntityResponseType> {
-    return this.http.put<IProgram>(this.resourceUrl, program, { observe: 'response' });
+  update(id: number, program: IProgram): Observable<EntityResponseType> {
+    return this.http.put<IProgram>(`${this.resourceUrl}/${id}`, program, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {

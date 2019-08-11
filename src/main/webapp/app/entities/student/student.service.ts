@@ -19,8 +19,8 @@ export class StudentService {
     return this.http.post<IStudent>(this.resourceUrl, student, { observe: 'response' });
   }
 
-  update(student: IStudent): Observable<EntityResponseType> {
-    return this.http.put<IStudent>(this.resourceUrl, student, { observe: 'response' });
+  update(id: number, student: IStudent): Observable<EntityResponseType> {
+    return this.http.put<IStudent>(`${this.resourceUrl}/${id}`, student, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {

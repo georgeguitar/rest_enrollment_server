@@ -85,7 +85,7 @@ export class EnrollmentUpdateComponent implements OnInit {
     this.isSaving = true;
     const enrollment = this.createFromForm();
     if (enrollment.id !== undefined) {
-      this.subscribeToSaveResponse(this.enrollmentService.update(enrollment));
+      this.subscribeToSaveResponse(this.enrollmentService.update(enrollment.id, enrollment));
     } else {
       this.subscribeToSaveResponse(this.enrollmentService.create(enrollment));
     }

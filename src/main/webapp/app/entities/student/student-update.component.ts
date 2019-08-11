@@ -48,7 +48,7 @@ export class StudentUpdateComponent implements OnInit {
     this.isSaving = true;
     const student = this.createFromForm();
     if (student.id !== undefined) {
-      this.subscribeToSaveResponse(this.studentService.update(student));
+      this.subscribeToSaveResponse(this.studentService.update(student.id, student));
     } else {
       this.subscribeToSaveResponse(this.studentService.create(student));
     }

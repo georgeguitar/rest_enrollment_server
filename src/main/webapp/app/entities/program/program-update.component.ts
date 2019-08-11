@@ -48,7 +48,7 @@ export class ProgramUpdateComponent implements OnInit {
     this.isSaving = true;
     const program = this.createFromForm();
     if (program.id !== undefined) {
-      this.subscribeToSaveResponse(this.programService.update(program));
+      this.subscribeToSaveResponse(this.programService.update(program.id, program));
     } else {
       this.subscribeToSaveResponse(this.programService.create(program));
     }

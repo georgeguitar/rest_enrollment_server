@@ -25,10 +25,10 @@ export class EnrollmentService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  update(enrollment: IEnrollment): Observable<EntityResponseType> {
+  update(id: number, enrollment: IEnrollment): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(enrollment);
     return this.http
-      .put<IEnrollment>(this.resourceUrl, copy, { observe: 'response' })
+      .put<IEnrollment>(`${this.resourceUrl}/${id}`, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

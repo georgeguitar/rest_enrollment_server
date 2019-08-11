@@ -67,12 +67,13 @@ public class StudentResource {
      * or with status {@code 500 (Internal Server Error)} if the student couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/students")
-    public ResponseEntity<Student> updateStudent(@Valid @RequestBody Student student) throws URISyntaxException {
+    @PutMapping("/students/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @Valid @RequestBody Student student) throws URISyntaxException {
         log.debug("REST request to update Student : {}", student);
-        if (student.getId() == null) {
+        if (id == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        student.setId(id);
         Student result = studentService.save(student);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, student.getId().toString()))

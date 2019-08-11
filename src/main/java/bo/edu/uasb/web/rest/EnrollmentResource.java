@@ -74,12 +74,13 @@ public class EnrollmentResource {
      * or with status {@code 500 (Internal Server Error)} if the enrollment couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/enrollments")
-    public ResponseEntity<Enrollment> updateEnrollment(@Valid @RequestBody Enrollment enrollment) throws URISyntaxException {
+    @PutMapping("/enrollments/{id}")
+    public ResponseEntity<Enrollment> updateEnrollment(@PathVariable Long id, @Valid @RequestBody Enrollment enrollment) throws URISyntaxException {
         log.debug("REST request to update Enrollment : {}", enrollment);
-        if (enrollment.getId() == null) {
+        if (id == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        enrollment.setId(id);
         Enrollment result = enrollmentService.save(enrollment);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, enrollment.getId().toString()))

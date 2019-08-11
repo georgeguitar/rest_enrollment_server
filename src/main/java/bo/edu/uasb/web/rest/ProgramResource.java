@@ -73,7 +73,7 @@ public class ProgramResource {
         if (id == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        program.setId(id);
+        program.setId(id); 
         Program result = programService.save(program);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, program.getId().toString()))

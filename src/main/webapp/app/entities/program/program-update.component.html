@@ -78,6 +78,14 @@
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
+                               *ngIf="editForm.get('credits').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                            This field should be at least 1.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('credits').errors.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 20 }">
+                            This field cannot be more than 20.
+                        </small>
+                        <small class="form-text text-danger"
                             [hidden]="!editForm.get('credits')?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>

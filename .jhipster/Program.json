@@ -35,8 +35,12 @@
             "fieldName": "credits",
             "fieldType": "Integer",
             "fieldValidateRules": [
+                "min",
+                "max",
                 "required"
-            ]
+            ],
+            "fieldValidateRulesMin": 1,
+            "fieldValidateRulesMax": 20
         }
     ],
     "relationships": [

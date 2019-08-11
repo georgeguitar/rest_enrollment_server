@@ -18,7 +18,7 @@ export class ProgramUpdateComponent implements OnInit {
     name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(60)]],
     semesters: [null, [Validators.required]],
     title: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(60)]],
-    credits: [null, [Validators.required]]
+    credits: [null, [Validators.required, Validators.min(1), Validators.max(20)]]
   });
 
   constructor(protected programService: ProgramService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}

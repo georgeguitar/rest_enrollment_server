@@ -38,6 +38,8 @@ public class Program implements Serializable {
     private String title;
 
     @NotNull
+    @Min(value = 1)
+    @Max(value = 20)
     @Column(name = "credits", nullable = false)
     private Integer credits;
 

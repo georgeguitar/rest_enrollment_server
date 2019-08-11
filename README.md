@@ -1,4 +1,61 @@
-# enrollment
+# Proyecto Rest Enrollment
+
+Autor: Navarro Arias, Juan Dirceu.  
+Modulo: Consumo de APIs.  
+Universidad Andina Simón Bolivar.  
+Sede Sucre, Bolivia.
+
+## Descripción.
+
+Proyecto que ofrece servicios _REST_ para matricular estudiantes (enrollment). El proyecto fue generado utilizando [jHipster](https://www.jhipster.tech/).
+
+El proyecto está relacionado con el proyecto [SOAP](https://github.com/georgeguitar/soap_enrollment_server.git)
+
+## Base de datos.
+
+![Servicios](enrollment-jdl.png)
+
+El archivo _enrollmentDB.sql_ contiene la base de datos para Mysql.  
+El archivo _enrollment-jdl.jh_ contiene el modelo JDL.
+
+## Herramientas utilizadas.
+
+Sistema operativo: Debian 10 con Gnome  
+IDE: Eclipse v4.12.0  
+Cliente REST: [Postman](https://www.getpostman.com/products) v7.3.4  
+Navegador web: Firefox 60.8.0esr  
+Herramienta de desarrollo: [jHipster](https://www.jhipster.tech/). v6.1.2
+
+## Para consumir los servicios de REST.
+
+Los servicios se pueden consumir mediante el uso de algún cliente Rest como Postman o un programa cliente.
+
+![Servicios](servicios_rest.png)
+
+- GET.
+- POST.
+- DELETE.
+- PATCH.
+- PUT.
+
+URL de acceso al proyecto: [http://uasb-api.rootcode.com.bo:8078](http://uasb-api.rootcode.com.bo:8078)
+
+## Comandos de maven.
+
+### Para ejecutar el proyecto.
+
+\$ ./mvnw
+
+### Para crear el war del proyecto para producción.
+
+\$ ./mvnw -Pprod package
+
+## Fuentes.
+
+[https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)  
+[https://www.jhipster.tech/](https://www.jhipster.tech/)
+
+# Notas generadas automáticamente por jHipster.
 
 This application was generated using JHipster 6.1.2, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.1.2](https://www.jhipster.tech/documentation-archive/v6.1.2).
 

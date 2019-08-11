@@ -43,4 +43,12 @@ public interface EnrollmentService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    
+    /**
+     * Partial save a enrollment.
+     *
+     * @param enrollment the entity to save.
+     * @return the persisted entity.
+     */
+    Enrollment partialSave(Enrollment enrollment);
 }

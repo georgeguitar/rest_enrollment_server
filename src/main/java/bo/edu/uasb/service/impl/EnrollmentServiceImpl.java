@@ -77,4 +77,37 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         log.debug("Request to delete Enrollment : {}", id);
         enrollmentRepository.deleteById(id);
     }
+    
+    /**
+     * Save a enrollment.
+     *
+     * @param enrollment the entity to save.
+     * @return the persisted entity.
+     */
+    @Override
+    public Enrollment partialSave(Enrollment partialEnrollment) {
+        log.debug("Request to save Enrollment : {}", partialEnrollment);
+        
+        Optional<Enrollment> enrollment = enrollmentRepository.findById(partialEnrollment.getId());
+        if (partialEnrollment.getYear() == null) {
+        	partialEnrollment.setYear(enrollment.get().getYear());
+        }
+        if (partialEnrollment.getPeriod() == null) {
+        	partialEnrollment.setPeriod(enrollment.get().getPeriod());
+        }
+        if (partialEnrollment.getLevel() == null) {
+        	partialEnrollment.setLevel(enrollment.get().getLevel());
+        }
+        if (partialEnrollment.getDateEnrollment() == null) {
+        	partialEnrollment.setDateEnrollment(enrollment.get().getDateEnrollment());
+        }
+        if (partialEnrollment.getId() == null) {
+        	partialEnrollment.setId(enrollment.get().getId());
+        }
+        if (partialEnrollment.getProgram() == null) {
+        	partialEnrollment.setProgram(enrollment.get().getProgram());
+        }
+        
+        return enrollmentRepository.save(partialEnrollment);
+    }
 }

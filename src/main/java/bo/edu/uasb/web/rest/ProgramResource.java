@@ -1,23 +1,31 @@
 package bo.edu.uasb.web.rest;
 
-import bo.edu.uasb.domain.Program;
-import bo.edu.uasb.service.ProgramService;
-import bo.edu.uasb.web.rest.errors.BadRequestAlertException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 
-import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import java.util.List;
-import java.util.Optional;
+import bo.edu.uasb.domain.Program;
+import bo.edu.uasb.service.ProgramService;
+import bo.edu.uasb.web.rest.errors.BadRequestAlertException;
+import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing {@link bo.edu.uasb.domain.Program}.
@@ -80,6 +88,29 @@ public class ProgramResource {
             .body(result);
     }
 
+    
+    /**
+     * {@code Patch  /programs} : Updates an existing program.
+     *
+     * @param program the program to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated program,
+     * or with status {@code 400 (Bad Request)} if the program is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the program couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PatchMapping("/programs/{id}")
+    public ResponseEntity<Program> partialUpdateProgram(@PathVariable Long id, @Valid @RequestBody Program program) throws URISyntaxException {
+        log.debug("REST request to update Program : {}", program);
+        if (id == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        program.setId(id); 
+        Program result = programService.partialSave(program);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, program.getId().toString()))
+            .body(result);
+    }    
+    
     /**
      * {@code GET  /programs} : get all the programs.
      *

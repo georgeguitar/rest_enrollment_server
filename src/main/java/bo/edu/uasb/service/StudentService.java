@@ -40,4 +40,12 @@ public interface StudentService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    
+    /**
+     * Partial save a student.
+     *
+     * @param student the entity to save.
+     * @return the persisted entity.
+     */
+    Student partialSave(Student student);
 }

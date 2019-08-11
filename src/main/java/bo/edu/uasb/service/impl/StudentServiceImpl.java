@@ -75,4 +75,31 @@ public class StudentServiceImpl implements StudentService {
         log.debug("Request to delete Student : {}", id);
         studentRepository.deleteById(id);
     }
+    
+    /**
+     * Save a student.
+     *
+     * @param student the entity to save.
+     * @return the persisted entity.
+     */
+    @Override
+    public Student partialSave(Student partialStudent) {
+        log.debug("Request to save Student : {}", partialStudent);
+        Optional<Student> student = studentRepository.findById(partialStudent.getId());
+
+        if (partialStudent.getName() == null) {
+        	partialStudent.setName(student.get().getName());
+        }
+        if (partialStudent.getSurname() == null) {
+        	partialStudent.setSurname(student.get().getSurname());
+        }
+        if (partialStudent.getAddress() == null) {
+        	partialStudent.setAddress(student.get().getAddress());
+        }
+        if (partialStudent.getTelephone() == null) {
+        	partialStudent.setTelephone(student.get().getTelephone());
+        }
+        
+        return studentRepository.save(partialStudent);
+    }
 }

@@ -7,6 +7,8 @@ import bo.edu.uasb.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.micrometer.core.annotation.Timed;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -86,6 +88,32 @@ public class EnrollmentResource {
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, enrollment.getId().toString()))
             .body(result);
     }
+    
+    
+    /**
+     * {@code PACH  /enrollments} : Updates an existing enrollment.
+     *
+     * @param enrollment the enrollment to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated enrollment,
+     * or with status {@code 400 (Bad Request)} if the enrollment is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the enrollment couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PatchMapping("/enrollments/{id}")
+    @Timed
+    public ResponseEntity<Enrollment> partialUpdateEnrollment(@PathVariable Long id, @RequestBody Enrollment enrollment)
+            throws URISyntaxException {
+        log.debug("REST request to update an Enrollment : {}", enrollment);
+        if (id == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        enrollment.setId(id);
+        Enrollment result = enrollmentService.partialSave(enrollment);
+        return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, enrollment.getId().toString()))
+                .body(result);
+    }
+    
 
     /**
      * {@code GET  /enrollments} : get all the enrollments.

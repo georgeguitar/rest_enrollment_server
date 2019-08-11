@@ -40,4 +40,12 @@ public interface ProgramService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    
+    /**
+     * Partial save a program.
+     *
+     * @param program the entity to save.
+     * @return the persisted entity.
+     */
+    Program partialSave(Program program);
 }

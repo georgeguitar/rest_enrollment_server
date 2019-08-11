@@ -81,6 +81,29 @@ public class StudentResource {
     }
 
     /**
+     * {@code Patch  /students} : Updates an existing student.
+     *
+     * @param student the student to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated student,
+     * or with status {@code 400 (Bad Request)} if the student is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the student couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PatchMapping("/students/{id}")
+    public ResponseEntity<Student> partialUpdateStudent(@PathVariable Long id, @Valid @RequestBody Student student) throws URISyntaxException {
+        log.debug("REST request to update Student : {}", student);
+        if (id == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        student.setId(id);
+        Student result = studentService.partialSave(student);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, student.getId().toString()))
+            .body(result);
+    }
+
+    
+    /**
      * {@code GET  /students} : get all the students.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of students in body.

@@ -75,4 +75,32 @@ public class ProgramServiceImpl implements ProgramService {
         log.debug("Request to delete Program : {}", id);
         programRepository.deleteById(id);
     }
+    
+    /**
+     * Save a program.
+     *
+     * @param program the entity to save.
+     * @return the persisted entity.
+     */
+    @Override
+    public Program partialSave(Program partialProgram) {
+        log.debug("Request to save Program : {}", partialProgram);
+        Optional<Program> program = programRepository.findById(partialProgram.getId());
+        
+        if (partialProgram.getName() == null) {
+        	partialProgram.setName(program.get().getName());
+        }
+        if (partialProgram.getSemesters() == null) {
+        	partialProgram.setSemesters(program.get().getSemesters());
+        }
+        if (partialProgram.getTitle() == null) {
+        	partialProgram.setTitle(program.get().getTitle());
+        }
+        if (partialProgram.getCredits() == null) {
+        	partialProgram.setCredits(program.get().getCredits());
+        }
+        
+        return programRepository.save(partialProgram);
+    }    
+    
 }

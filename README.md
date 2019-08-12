@@ -33,7 +33,7 @@ Los servicios se pueden consumir mediante el uso de algún cliente Rest como Pos
 ![Servicios](servicios_rest.png)
 
 - GET.
-- POST.
+- POST
 - DELETE.
 - PATCH.
 - PUT.

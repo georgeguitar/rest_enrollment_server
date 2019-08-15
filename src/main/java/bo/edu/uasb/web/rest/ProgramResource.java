@@ -76,7 +76,7 @@ public class ProgramResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/programs/{id}")
-    public ResponseEntity<Program> updateProgram(@PathVariable Long id, @Valid @RequestBody Program program) throws URISyntaxException {
+    public ResponseEntity<Program> updateProgram(@PathVariable Long id, @RequestBody Program program) throws URISyntaxException {
         log.debug("REST request to update Program : {}", program);
         if (id == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

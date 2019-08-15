@@ -90,7 +90,7 @@ public class StudentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping("/students/{id}")
-    public ResponseEntity<Student> partialUpdateStudent(@PathVariable Long id, @Valid @RequestBody Student student) throws URISyntaxException {
+    public ResponseEntity<Student> partialUpdateStudent(@PathVariable Long id, @RequestBody Student student) throws URISyntaxException {
         log.debug("REST request to update Student : {}", student);
         if (id == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

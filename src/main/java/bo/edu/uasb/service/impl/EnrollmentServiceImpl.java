@@ -107,6 +107,9 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         if (partialEnrollment.getProgram() == null) {
         	partialEnrollment.setProgram(enrollment.get().getProgram());
         }
+        if (partialEnrollment.getStudent() == null) {
+        	partialEnrollment.setStudent(enrollment.get().getStudent());
+        }
         
         return enrollmentRepository.save(partialEnrollment);
     }

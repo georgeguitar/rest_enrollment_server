@@ -28,7 +28,7 @@ Herramienta de desarrollo: [jHipster](https://www.jhipster.tech/). v6.1.2
 
 ## Para consumir los servicios de REST.
 
-Los servicios se pueden consumir mediante el uso de algún cliente Rest como Postman o un programa cliente.
+Los servicios se pueden consumir mediante el uso de algún cliente Rest como Postman o un programa [cliente](https://github.com/georgeguitar/rest-enrollment-client.git), URL de acceso: [http://uasb-api.rootcode.com.bo/jnavarro/rest-enrollment-client/](http://uasb-api.rootcode.com.bo/jnavarro/rest-enrollment-client/)
 
 ![Servicios](servicios_rest.png)
 
